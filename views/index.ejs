@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Generator</title>
+  <style>
+    main {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    form {
+      padding: 15px;
+      background-color: bisque;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-gap: 10px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <main>
+    <form action="/send-email" method="post">
+      <h1 style="grid-column: span 2; margin: 0px;">Email Generator</h1>
+      <label for="receipient">Receipient: </label><input id="receipient" name="receipient" />
+      <label for="subject">Subject Line: </label><input id="subject" name="subject" />
+      <label for="heading">Heading: </label><input id="heading" name="heading" />
+      <label for="content">Content: </label><input id="content" name="content" />
+
+      <button type="button">Update</button>
+      <button type="submit">Send Email</button>
+    </form>
+
+    <div>
+      <h1 id="sample-heading"></h1>
+      <p id="sample-content"></p>
+    </div>
+  </main>
+
+  <script>
+    const id = (id) => document.getElementById(id)
+    const addEditHandler = (input, output) => {
+      if (input.nodeName !== 'INPUT')
+        throw "addEditHandler must take an input element as the first parameter"
+
+      input.addEventListener('change', (e) => {
+        output.textContent = e.target.value
+      })
+    }
+
+    addEditHandler(id('heading'), id('sample-heading'))
+    addEditHandler(id('content'), id('sample-content'))
+
+  </script>
+</body>
+
+</html>
